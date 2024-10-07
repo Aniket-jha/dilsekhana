@@ -1,7 +1,13 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import Item from "@/src/components/Item";
 import RestaurantCardTab from "@/src/components/RestaurantCardTab";
 import Layout from "@/src/layouts/Layout";
 import Link from "next/link";
+
+
 const RestaurantCard = () => {
   const items = [
     {
@@ -178,20 +184,39 @@ const RestaurantCard = () => {
       </section>
       {/* tabs */}
       <RestaurantCardTab items={items} />
+      
       {/* Lunch Section */}
       <section className="lunch-section gap" style={{ background: "#fcfcfc" }}>
-        <div className="container">
+        <div className="">
           <h2 data-aos="fade-up" data-aos-delay={300} data-aos-duration={400}>
             See also category Lunch
           </h2>
-          <div className="row">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={3}
+            navigation
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: {
+                slidesPerView: 1,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+              },
+            }}
+          >
             {items.map(
-              (item, i) =>
+              (item) =>
                 item.category.includes("others") && (
-                  <Item item={item} key={item.id} />
+                  <SwiperSlide key={item.id}>
+                    <Item item={item} />
+                  </SwiperSlide>
                 )
             )}
-          </div>
+          </Swiper>
         </div>
       </section>
     </Layout>

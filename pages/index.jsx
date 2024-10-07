@@ -1,8 +1,10 @@
+import BestSeller from "@/src/components/BestSeller";
 import Subscribe from "@/src/components/Subscribe";
 import Layout from "@/src/layouts/Layout";
 import { sliderProps } from "@/src/sliderProps";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 const Index = () => {
   return (
     <Layout>
@@ -72,8 +74,13 @@ const Index = () => {
           </div>
         </div>
       </section>
-      {/* works-section */}
-      <section className="works-section gap no-top">
+
+      {/* Our Best  Seller */}
+      <BestSeller />
+
+
+      {/* How it works-section */}
+      <section className="works-section gap ">
         <div className="container">
           <div
             className="hading"
@@ -146,8 +153,14 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+
+      {/* Our Best  Seller */}
+      <BestSeller />
+
+
       {/* best-restaurants */}
-      <section
+      {/* <section
         className="best-restaurants gap"
         style={{ background: "#fcfcfc" }}
       >
@@ -277,7 +290,11 @@ const Index = () => {
             </Link>
           </div>
         </div>
-      </section>
+      </section> */}
+
+
+
+
       {/* your-favorite-food */}
       <section
         className="your-favorite-food gap"
@@ -328,8 +345,12 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+
+
+
       {/* counters-section */}
-      <section className="counters-section">
+      <section className="counters-section ">
         <div className="container">
           <div className="row align-items-center">
             <div
@@ -409,8 +430,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+
+
       {/* reviews-sections */}
-      <section className="reviews-sections gap">
+      {/* <section className="reviews-sections gap">
         <div className="container">
           <div className="row align-items-center">
             <div
@@ -505,9 +529,12 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+
+
       {/* join-partnership */}
-      <section
+      {/* <section
         className="join-partnership gap"
         style={{ backgroundColor: "#363636" }}
       >
@@ -548,9 +575,12 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+
+
       {/* news-section */}
-      <section className="news-section gap">
+      {/* <section className="news-section gap">
         <div className="container">
           <h2>Latest news and events</h2>
           <div className="row">
@@ -720,9 +750,12 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+
+
       {/* subscribe-section */}
-      <Subscribe />
+      {/* <Subscribe /> */}
     </Layout>
   );
 };

@@ -4,7 +4,7 @@ const Item = ({ item }) => {
   const [quantity, setQuantity] = useState(1);
   return (
     <div
-      className="col-xl-4 col-lg-6"
+      className=""
       data-aos="flip-up"
       data-aos-delay={200}
       data-aos-duration={300}

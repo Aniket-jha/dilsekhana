@@ -2,7 +2,7 @@
 
 @media(max-width: 2000px) and (min-width: 1400px){
     .container {
-        max-width: 1400px;
+        paddding:60px 80px;
     }
 }
 body{
@@ -348,6 +348,8 @@ select.nice-select + div.nice-select + div.nice-select {
 }
 /*--------------       Works Section    ----------------*/
 .hading {
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
 }
 .hading h2{
@@ -499,6 +501,10 @@ a.button-2.non {
     width: 80%;
 }
 /*-------------     counters-section      --------------*/
+.counters-section {
+    padding-top: 50px;
+    padding-bottom: 80px;
+}
 
 .counters-section h2 {
     font-weight: bold;
@@ -1837,9 +1843,11 @@ ul.food-dishes li {
     margin-top: 30px;
 }
 /*-------------------------       lunch-section        --------------- */
+
 .lunch-section  h2{
+    text-align: center;
+    justify-content: center;
     font-weight: bold;
-    width: 35%;
 }
 /*-------------------         error-section         -------------------*/
 .error-section {

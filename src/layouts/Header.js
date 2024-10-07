@@ -17,7 +17,7 @@ const Header = ({ extraClass }) => {
           <div className="col-xl-2">
             <div className="header-style">
               <Link href="/">
-           <img className="mainLogoBox" src="/assets/img/logomain.svg" />
+                <img className="mainLogoBox" src="/assets/img/logomain.svg" />
               </Link>
               <div className="extras bag">
                 <a href="#" className="menu-btn" onClick={(e) => onClick(e)}>
