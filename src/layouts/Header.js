@@ -36,15 +36,16 @@ const Header = ({ extraClass }) => {
                   <Link href="/">Home</Link>
                 </li>
                 <li className="navbar-dropdown">
-                  <Link href="bulk-order">Bulk Order</Link>
+                  <Link href="bulkorder">Bulk Order</Link>
                 </li>
                 <li className="navbar-dropdown">
                   <Link href="restaurants">Restaurant</Link>
                   <div className="dropdown">
-                    <Link href="restaurants">Veg Menu</Link>
-                    <Link href="restaurant-card">Non Veg Menu</Link>
-                    <Link href="checkout">Desearts</Link>
-                   
+                    <Link href="veg">Veg Menu</Link>
+                    <Link href="nonveg">Non Veg Menu</Link>
+                    <Link href="deseart">Desearts</Link>
+                    <Link href="catering">Catering</Link>
+
                   </div>
                 </li>
                 <li className="navbar-dropdown">

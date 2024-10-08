@@ -154,7 +154,7 @@ const RestaurantCard = () => {
               </div>
             </div>
             <div
-              className="col-lg-6"
+              className="col-lg-4"
               data-aos="fade-up"
               data-aos-delay={400}
               data-aos-duration={500}

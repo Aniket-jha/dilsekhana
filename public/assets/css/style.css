@@ -985,7 +985,7 @@ ul.crumbs li.two i {
   font-size: 16px;
 }
 .card-text-data:hover{
-    background: linear-gradient( 145deg, #FFBB45, #FF820B);
+    background: #117554;
 }
 .card-text-data img.off{
     display: none;

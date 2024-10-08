@@ -73,6 +73,7 @@ const Restaurants = () => {
           </div>
         </div>
       </section>
+
       {/* banner */}
       <section
         className="banner"
@@ -112,6 +113,7 @@ const Restaurants = () => {
           </div>
         </div>
       </section>
+      
       {/* best-restaurants */}
       <section className="best-restaurants gap">
         <div className="container">

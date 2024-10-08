@@ -48,6 +48,7 @@ const About = () => {
           </div>
         </div>
       </section>
+
       {/* our-mission-section */}
       <section className="our-mission-section gap">
         <div className="container">
@@ -84,6 +85,7 @@ const About = () => {
           </div>
         </div>
       </section>
+      
       {/* cards-section */}
       <section className="cards-section gap no-top">
         <div className="container">
@@ -189,6 +191,7 @@ const About = () => {
           </div>
         </div>
       </section>
+
       {/* video-section */}
       <section className="video-section gap">
         <div className="container">
@@ -248,6 +251,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+
       {/* about-counters-section */}
       <section
         className="about-counters-section gap"
@@ -336,8 +341,9 @@ const About = () => {
           </div>
         </div>
       </section>
+      
       {/* Our Team Section */}
-      <section className="our-team-section gap">
+      {/* <section className="our-team-section gap">
         <div className="container">
           <div
             className="hading"
@@ -463,9 +469,9 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* Our partners Section */}
-      <section
+      {/* <section
         className="our-partners-section gap"
         style={{ background: "#fcfcfc" }}
         data-aos="fade-up"
@@ -518,9 +524,9 @@ const About = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-      </section>
+      </section> */}
       {/* Our partners Section */}
-      <section
+      {/* <section
         className="service-shows gap"
         data-aos="fade-up"
         data-aos-delay={200}
@@ -630,9 +636,9 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* subscribe-section */}
-      <section
+      {/* <section
         className="subscribe-section about gap"
         style={{ backgroundImage: "url(assets/img/background-img.jpg)" }}
       >
@@ -665,7 +671,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </Layout>
   );
 };

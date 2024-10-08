@@ -1,0 +1,30 @@
+.BulkOrderBreadcrub{
+    top: 100px;
+    background-image: url("../../../public/assets/img/background-3.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 150px;
+}
+
+.BulkOrderBanner{
+    font-size: 2.2rem;
+  font-weight: 700;
+  color: transparent;
+  background-clip: text;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+    .text-custom {
+      font-size: 3.5rem;
+    }
+}
+.text-custom-white{
+    color: black;
+}
