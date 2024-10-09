@@ -1543,7 +1543,7 @@ header.two {
 /*----------     qty-input      ------------*/
 .qty-input {
   color: #000;
-  background: #fff;
+  /* background: #fff; */
   display: flex;
   align-items: center;
   justify-content: end;
@@ -1622,6 +1622,14 @@ header.two {
 }
 .price h2 {
     font-weight: bold;
+}
+
+.price-detail {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }
 .qty-input .product-qty {
     width: 50px;

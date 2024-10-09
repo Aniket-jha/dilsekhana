@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
         {/* seo end */}        
       </Head>
       {preLoader && <PreLoader />}
-      {!preLoader && <Component {...pageProps} />}
+      {preLoader && <Component {...pageProps} />}
     </Fragment>
   );
 }

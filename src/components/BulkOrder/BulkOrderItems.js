@@ -44,6 +44,7 @@ const BulkOrderItems = ({item}) => {
               </div>
             </div>
           </div>
+
           <div className="price">
             <h2>${item.price}</h2>
             <div className="qty-input">
@@ -72,17 +73,22 @@ const BulkOrderItems = ({item}) => {
               </button>
             </div>
           </div>
+
           <button className="button-price">
             Add to Basket
             <i className="fa-solid fa-bag-shopping" />
           </button>
+
         </div>
+
+
+
         <div
           className="dish-info"
           style={{
             display: cardInfo == item.id ? "block" : "none",
-          }}
-        >
+          }}>
+
           <i
             className="info2 fa-solid fa-xmark"
             onClick={() => setCardInfo(false)}
@@ -106,6 +112,7 @@ const BulkOrderItems = ({item}) => {
             <li>Blandit donec adipiscing;</li>
           </ul>
         </div>
+        
       </div>
     </div>
   )

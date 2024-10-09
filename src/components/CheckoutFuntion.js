@@ -26,7 +26,7 @@ const CheckoutFuntion = ({ sidebar }) => {
   const [totalPrice, setTotalPrice] = useState(0);
   useEffect(() => {
     setSubTotal(subTotal_());
-    setTotalPrice(Number(subTotal_()).toFixed(2));
+    setTotalPrice(Number(subTotal_()).toFixed());
     localStorage.setItem(
       "munfirm",
       JSON.stringify({ subTotal, totalPrice, cartData })

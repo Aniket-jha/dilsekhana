@@ -51,6 +51,9 @@ const Header = ({ extraClass }) => {
                 <li className="navbar-dropdown">
                   <Link href="about">About</Link>
                 </li>
+                <li className="navbar-dropdown">
+                  <Link href="detail">Detail</Link>
+                </li>
                 {/* <li className="navbar-dropdown">
                   <Link href="#">Pages</Link>
                   <div className="dropdown">

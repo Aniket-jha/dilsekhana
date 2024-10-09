@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/deseart": "pages/deseart.js",
-  "/contacts": "pages/contacts.js",
-  "/about": "pages/about.js"
+  "/detail": "pages/detail.js",
+  "/bulkorder": "pages/bulkorder.js",
+  "/": "pages/index.js"
 }

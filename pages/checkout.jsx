@@ -15,7 +15,8 @@ const Checkout = () => {
           <div className="row align-items-center">
             <div className="col-lg-12">
               <div className="about-text pricing-table">
-                <ul
+                
+                {/* <ul
                   className="crumbs d-flex"
                   data-aos="fade-up"
                   data-aos-delay={200}
@@ -42,7 +43,8 @@ const Checkout = () => {
                       Checkout
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
+
                 <h2
                   data-aos="fade-up"
                   data-aos-delay={300}
