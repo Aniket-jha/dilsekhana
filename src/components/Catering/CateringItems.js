@@ -1,0 +1,20 @@
+import React from 'react'
+import CateringMenuItems from './CateringMenuItems';
+
+const CateringItems = ({repairProductsList}) => {
+    
+  return (
+    <section className="lunch-section gap " style={{ background: "#fcfcfc" }}>
+        <div className="px-8 row">
+        
+        {repairProductsList?.length !==0 && repairProductsList?.map(
+              (item) =>
+                <CateringMenuItems  item={item} />
+            )}
+         
+        </div>
+      </section>
+  )
+}
+
+export default CateringItems
