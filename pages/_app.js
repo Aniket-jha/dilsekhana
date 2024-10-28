@@ -7,6 +7,7 @@ import '../src/components/VegMenu/VegMenu.css';
 import '../src/components/Nonveg/Nonveg.css'; 
 import '../src/components/Deseart/Deseart.css'; 
 import '../src/components/Catering/Catering.css'; 
+import '../src/components/Pincode/Pincode.css';
 
 
 export default function App({ Component, pageProps }) {

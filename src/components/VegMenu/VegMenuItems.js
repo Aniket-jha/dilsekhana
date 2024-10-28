@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import Link from 'next/link';
+import Pincode from "../Pincode/Pincode";
 
 
 const VegMenuItems = ({item}) => {

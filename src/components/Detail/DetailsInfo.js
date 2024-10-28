@@ -1,9 +1,12 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
+import Pincode from '../Pincode/Pincode'
 
 const DetailsInfo = ({name,price,description,image,quantity,stockDetails}) => {
         console.log(stockDetails)
         console.log(name)
+
+        const [isPincodeValid, setIsPincodeValid] = useState(false);
   return (
     
     
@@ -87,14 +90,17 @@ const DetailsInfo = ({name,price,description,image,quantity,stockDetails}) => {
 
 
                 <>
-                    {stockDetails === "In-Stock" ? (
-                        <button className="button-price mt-5">
-                            Add to Basket
-                            <i className="fa-solid fa-bag-shopping" />
-                        </button>
-                    ) : (
-                        <h5 className='my-3 text-danger'>Out of Stock</h5>
-                    )}
+                <Pincode onPincodeValid={setIsPincodeValid} />
+                {stockDetails === "In-Stock" ? (
+                  <div>
+                {isPincodeValid && <button className="button-price mt-5">
+                    Add to Basket
+                    <i className="fa-solid fa-bag-shopping" />
+                </button>}
+                </div>
+            ) : (
+                <h5 className="my-3 text-danger">Out of Stock</h5>
+            )}
                 </>      
                 
 
