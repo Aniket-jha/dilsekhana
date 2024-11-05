@@ -1,40 +1,41 @@
 import { useEffect, useState } from "react";
+import { useCart } from "@/src/store/cartContext";
+import { useRouter } from "next/router";
 
-const CheckoutFuntion = ({ sidebar }) => {
-  const [cartData, setCartData] = useState([
-   
-  ]);
-  // total price
+const CheckoutFunction = ({ sidebar }) => {
+  const router = useRouter();
+  const {
+    cartData,
+    updateQuantity: updateCartQuantity,
+    removeFromCart,
+    clearCart,
+  } = useCart(); // Use updateCartQuantity from context
   const [subTotal, setSubTotal] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const handleQuantityChange = (itemId, newQuantity) => {
+    if (newQuantity >= 1) {
+      // Prevent setting quantity to less than 1
+      updateCartQuantity(itemId, newQuantity);
+    }
+  };
+
   useEffect(() => {
-    setSubTotal(subTotal_());
-    setTotalPrice(Number(subTotal_()).toFixed(2));
+    setSubTotal(calculateSubTotal());
+    setTotalPrice(Number(calculateSubTotal()).toFixed(2));
     localStorage.setItem(
       "munfirm",
       JSON.stringify({ subTotal, totalPrice, cartData })
     );
-  });
+  }, [cartData, subTotal, totalPrice]); // Add cartData, subTotal, and totalPrice as dependencies
 
-  const subTotal_ = () => {
+  const calculateSubTotal = () => {
     return cartData
       .map((item) => item.price * item.quantity)
       .reduce((prev, next) => prev + next, 0)
       .toFixed(2);
   };
 
-  const updateQuantity = (item, type, value) => {
-    let findCartItem = cartData.find((cart, i) => i === item);
-    findCartItem.quantity =
-      type == "-"
-        ? findCartItem.quantity === 1
-          ? 1
-          : findCartItem.quantity - 1
-        : type == "+"
-        ? findCartItem.quantity + 1
-        : value;
-    setCartData([...cartData]);
-  };
   return (
     <div className="checkout-order">
       <div className="title-checkout">
@@ -46,13 +47,13 @@ const CheckoutFuntion = ({ sidebar }) => {
         <h6>Kennington Lane Cafe</h6>
       </div>
       <ul>
-        {cartData.map((item, i) => (
-          <li className="price-list" key={item.id}>
+        {cartData.map((item, index) => (
+          <li className="price-list" key={`${item.id}-${index}`}>
+            {" "}
+            {/* Use id + index as key */}
             <i
               className="closeButton fa-solid fa-xmark"
-              onClick={() =>
-                setCartData(cartData.filter((c) => c.id !== item.id))
-              }
+              onClick={() => removeFromCart(item.id)}
             />
             <div className="counter-container">
               <div className="counter-food">
@@ -72,7 +73,9 @@ const CheckoutFuntion = ({ sidebar }) => {
                     className="qty-count qty-count--minus"
                     data-action="minus"
                     type="button"
-                    onClick={() => updateQuantity(i, "-")}
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity - 1)
+                    }
                   >
                     -
                   </button>
@@ -81,7 +84,7 @@ const CheckoutFuntion = ({ sidebar }) => {
                     type="number"
                     value={item.quantity}
                     onChange={(e) =>
-                      updateQuantity(i, "value", Number(e.target.value))
+                      handleQuantityChange(item.id, Number(e.target.value))
                     }
                     name="quantity"
                   />
@@ -89,7 +92,9 @@ const CheckoutFuntion = ({ sidebar }) => {
                     className="qty-count qty-count--add"
                     data-action="add"
                     type="button"
-                    onClick={() => updateQuantity(i, "+")}
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity + 1)
+                    }
                   >
                     +
                   </button>
@@ -100,6 +105,7 @@ const CheckoutFuntion = ({ sidebar }) => {
           </li>
         ))}
       </ul>
+
       <div className="totel-price">
         <span>Total order:</span>
         <h5>$ {Number(totalPrice).toFixed(2)}</h5>
@@ -108,7 +114,20 @@ const CheckoutFuntion = ({ sidebar }) => {
         <span>To pay:</span>
         <h2>$ {Number(totalPrice).toFixed(2)}</h2>
       </div>
+
+      <div className="cart-buttons">
+        <button className="button button-2" onClick={clearCart}>
+          Clear Cart
+        </button>
+        <button
+          className="button button-2"
+          onClick={() => router.push("/checkout")}
+        >
+          Checkout
+        </button>
+      </div>
     </div>
   );
 };
-export default CheckoutFuntion;
+
+export default CheckoutFunction;

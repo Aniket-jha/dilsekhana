@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { Fragment, useState } from "react";
+import { useCart } from "@/src/store/cartContext";
+import { toast } from "react-toastify";
 
-const NonvegMenuItems = ({item}) => {
-    const [cardInfo, setCardInfo] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+const NonvegMenuItems = ({ item }) => {
+  const [cardInfo, setCardInfo] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useCart();
   return (
     <div
       className="col-lg-4 col-md-6 col-sm-12"
@@ -12,11 +15,10 @@ const NonvegMenuItems = ({item}) => {
       data-aos-duration={300}
       key={item.id}
     >
-      
       <div className="dish">
-      <Link href={`/detail/${item.id}`}>
-        <img alt="food-dish" src={item.image} />
-      </Link>
+        <Link href={`/detail/${item.id}`}>
+          <img alt="food-dish" src={item.image} />
+        </Link>
         <div
           className="dish-foods"
           style={{
@@ -24,7 +26,7 @@ const NonvegMenuItems = ({item}) => {
           }}
         >
           <Link href={`/detail/${item.id}`}>
-          <h3>{item.name}</h3>
+            <h3>{item.name}</h3>
           </Link>
           <div className="dish-icon">
             {/* <div className="cafa-button">
@@ -78,7 +80,13 @@ const NonvegMenuItems = ({item}) => {
               </button>
             </div>
           </div>
-          <button className="button-price">
+          <button
+            className="button-price"
+            onClick={() => {
+              addToCart(item, quantity);
+              toast.success("Item added to basket!");
+            }}
+          >
             Add to Basket
             <i className="fa-solid fa-bag-shopping" />
           </button>
@@ -114,7 +122,7 @@ const NonvegMenuItems = ({item}) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NonvegMenuItems
+export default NonvegMenuItems;
