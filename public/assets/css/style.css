@@ -320,7 +320,7 @@ select.nice-select + div.nice-select + div.nice-select {
     transparent 50%
   );
   background-image: linear-gradient(30deg, #117554 50%, transparent 50%);
-  background-size: 500px;
+  background-size: 510px;
   background-repeat: no-repeat;
   background-position: 0%;
   -webkit-transition: background 300ms ease-in-out;
@@ -2693,6 +2693,12 @@ form.checkout-form span {
 form.checkout-form {
   padding: 30px;
   border-radius: 10px;
+}
+
+form.checkout-form .checkout-options {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
 }
 [type="radio"] {
   position: absolute;

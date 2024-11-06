@@ -1,4 +1,4 @@
-import CheckoutFuntion from "@/src/components/Cart/CheckoutFuntion";
+import CheckoutCart from "@/src/components/Cart/CheckoutCart";
 import Layout from "@/src/layouts/Layout";
 import Link from "next/link";
 import { useState } from "react";
@@ -64,7 +64,7 @@ const Checkout = () => {
           </div>
         </div>
       </section>
-      
+
       {/* checkout-order */}
       <section className="gap">
         <div className="container">
@@ -75,8 +75,7 @@ const Checkout = () => {
               data-aos-delay={200}
               data-aos-duration={300}
             >
-              <CheckoutFuntion />
-              
+              <CheckoutCart />
             </div>
             <div
               className="offset-xl-1 col-xl-6 col-lg-12"
@@ -125,7 +124,7 @@ const Checkout = () => {
                   </div>
                 </div>
                 <h4 className="two">Payment method</h4>
-                <div
+                {/* <div
                   className="nav nav-pills me-3"
                   id="v-pills-tab"
                   role="tablist"
@@ -214,7 +213,13 @@ const Checkout = () => {
                     ></div>
                   </div>
                 </div>
-                <button className="button-price">Send</button>
+                <button className="button-price">Send</button> */}
+                <div className="checkout-options">
+                  <button className="button button-2">Cash on Delivery</button>
+                  <button className="button button-2">
+                    Pay using Razorpay
+                  </button>
+                </div>
               </form>
             </div>
           </div>
