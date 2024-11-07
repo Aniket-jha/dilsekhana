@@ -1,42 +1,48 @@
 import { useEffect, useState } from "react";
+import { useCart } from "@/src/store/cartContext";
 
-const CheckoutFuntion = ({ sidebar }) => {
-  const [cartData, setCartData] = useState([]);
-  // total price
+const CheckoutCart = ({ sidebar }) => {
+  const {
+    cartData,
+    updateQuantity: updateCartQuantity,
+    removeFromCart,
+  } = useCart();
   const [subTotal, setSubTotal] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+
+  const handleQuantityChange = (itemId, newQuantity) => {
+    if (newQuantity >= 1) {
+      updateCartQuantity(itemId, newQuantity);
+    }
+  };
+
   useEffect(() => {
-    setSubTotal(subTotal_());
-    setTotalPrice(Number(subTotal_()).toFixed(2));
+    const newSubTotal = calculateSubTotal();
+    setSubTotal(newSubTotal);
+    setTotalPrice(Number(newSubTotal).toFixed(2));
     localStorage.setItem(
       "munfirm",
-      JSON.stringify({ subTotal, totalPrice, cartData })
+      JSON.stringify({
+        subTotal: newSubTotal,
+        totalPrice: Number(newSubTotal).toFixed(2),
+        cartData,
+      })
     );
-  });
+    console.log("CheckoutCart cartData:", cartData);
+  }, [cartData]);
 
-  const subTotal_ = () => {
+  const calculateSubTotal = () => {
     return cartData
       .map((item) => item.price * item.quantity)
-      .reduce((prev, next) => prev + next, 0)
-      .toFixed(2);
+      .reduce((prev, next) => prev + next, 0);
   };
 
-  const updateQuantity = (item, type, value) => {
-    let findCartItem = cartData.find((cart, i) => i === item);
-    findCartItem.quantity =
-      type == "-"
-        ? findCartItem.quantity === 1
-          ? 1
-          : findCartItem.quantity - 1
-        : type == "+"
-        ? findCartItem.quantity + 1
-        : value;
-    setCartData([...cartData]);
-  };
+  console.log(subTotal);
+
   return (
     <div className="checkout-order">
       <div className="title-checkout">
-        <h2>Final order:</h2>
+        <h2>Your order:</h2>
         {!sidebar && <h6>{cartData.length}</h6>}
       </div>
       <div className="banner-wilmington">
@@ -44,20 +50,17 @@ const CheckoutFuntion = ({ sidebar }) => {
         <h6>Kennington Lane Cafe</h6>
       </div>
       <ul>
-        {cartData.map((item, i) => (
-          <li className="price-list" key={item.id}>
+        {cartData.map((item, index) => (
+          <li className="price-list" key={`${item.id}-${index}`}>
             <i
               className="closeButton fa-solid fa-xmark"
-              onClick={() =>
-                setCartData(cartData.filter((c) => c.id !== item.id))
-              }
+              onClick={() => removeFromCart(item.id)}
             />
             <div className="counter-container">
               <div className="counter-food">
                 <img alt="food" src={item.image} />
-                <h4>{item.title}</h4>
+                <h4>{item.name}</h4>
               </div>
-              <h3>${item.price}</h3>
             </div>
             <div className="price">
               <div>
@@ -70,7 +73,9 @@ const CheckoutFuntion = ({ sidebar }) => {
                     className="qty-count qty-count--minus"
                     data-action="minus"
                     type="button"
-                    onClick={() => updateQuantity(i, "-")}
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity - 1)
+                    }
                   >
                     -
                   </button>
@@ -79,7 +84,7 @@ const CheckoutFuntion = ({ sidebar }) => {
                     type="number"
                     value={item.quantity}
                     onChange={(e) =>
-                      updateQuantity(i, "value", Number(e.target.value))
+                      handleQuantityChange(item.id, Number(e.target.value))
                     }
                     name="quantity"
                   />
@@ -87,7 +92,9 @@ const CheckoutFuntion = ({ sidebar }) => {
                     className="qty-count qty-count--add"
                     data-action="add"
                     type="button"
-                    onClick={() => updateQuantity(i, "+")}
+                    onClick={() =>
+                      handleQuantityChange(item.id, item.quantity + 1)
+                    }
                   >
                     +
                   </button>
@@ -98,6 +105,7 @@ const CheckoutFuntion = ({ sidebar }) => {
           </li>
         ))}
       </ul>
+
       <div className="totel-price">
         <span>Total order:</span>
         <h5>$ {Number(totalPrice).toFixed(2)}</h5>
@@ -109,4 +117,5 @@ const CheckoutFuntion = ({ sidebar }) => {
     </div>
   );
 };
-export default CheckoutFuntion;
+
+export default CheckoutCart;

@@ -1,9 +1,19 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartData, setCartData] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    // Recalculate total price whenever cartData changes
+    const newTotalPrice = cartData.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setTotalPrice(newTotalPrice.toFixed(2)); // Set total price with two decimal places
+  }, [cartData]);
 
   const addToCart = (item, quantity) => {
     setCartData((prevCart) => {
@@ -12,19 +22,17 @@ export const CartProvider = ({ children }) => {
       );
 
       if (existingItemIndex !== -1) {
-        // If item already in the cart, update its quantity
         const updatedCart = [...prevCart];
         updatedCart[existingItemIndex].quantity += quantity;
         return updatedCart;
       } else {
-        // If item is not in the cart, add it with the specified quantity
         return [...prevCart, { ...item, quantity }];
       }
     });
   };
 
   const removeFromCart = (itemId) => {
-    setCartData(cartData.filter((item) => item.id !== itemId));
+    setCartData((prevCart) => prevCart.filter((item) => item.id !== itemId));
   };
 
   const updateQuantity = (id, newQuantity) => {
@@ -41,7 +49,14 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartData, addToCart, updateQuantity, removeFromCart, clearCart }}
+      value={{
+        cartData,
+        totalPrice,
+        addToCart,
+        updateQuantity,
+        removeFromCart,
+        clearCart,
+      }}
     >
       {children}
     </CartContext.Provider>

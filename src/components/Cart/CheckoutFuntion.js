@@ -58,7 +58,7 @@ const CheckoutFunction = ({ sidebar }) => {
             <div className="counter-container">
               <div className="counter-food">
                 <img alt="food" src={item.image} />
-                <h4>{item.title}</h4>
+                <h4>{item.name}</h4>
               </div>
               <h3>${item.price}</h3>
             </div>
