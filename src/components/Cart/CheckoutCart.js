@@ -28,7 +28,6 @@ const CheckoutCart = ({ sidebar }) => {
         cartData,
       })
     );
-    console.log("CheckoutCart cartData:", cartData);
   }, [cartData]);
 
   const calculateSubTotal = () => {
@@ -36,8 +35,6 @@ const CheckoutCart = ({ sidebar }) => {
       .map((item) => item.price * item.quantity)
       .reduce((prev, next) => prev + next, 0);
   };
-
-  console.log(subTotal);
 
   return (
     <div className="checkout-order">

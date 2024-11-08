@@ -2659,7 +2659,7 @@ form.checkout-form input[type="password"] {
   border-radius: 10px;
   margin-top: 20px;
   outline: none;
-  color: #cfcfcf;
+  color: black;
   border: 1px solid #cfcfcf;
 }
 form.checkout-form input[type="text"]::placeholder,
@@ -2672,7 +2672,7 @@ form.checkout-form .nice-select {
   height: 60px;
   margin-top: 10px;
   background-color: #fcfcfc;
-  color: #cfcfcf;
+  color: black;
   border: 1px solid #cfcfcf;
 }
 form.checkout-form ul.list {

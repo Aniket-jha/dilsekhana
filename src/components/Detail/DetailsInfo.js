@@ -1,30 +1,46 @@
-"use client"
-import React, { useState } from 'react'
-import Pincode from '../Pincode/Pincode'
+"use client";
+import React, { useState } from "react";
+import Pincode from "../Pincode/Pincode";
+import { useRouter } from "next/router";
 
-const DetailsInfo = ({name,price,description,image,quantity,stockDetails}) => {
-        console.log(stockDetails)
-        console.log(name)
+const DetailsInfo = ({
+  name,
+  price,
+  description,
+  image,
+  quantity,
+  stockDetails,
+}) => {
+  console.log(stockDetails);
+  console.log(name);
 
-        const [isPincodeValid, setIsPincodeValid] = useState(false);
+  const router = useRouter();
+  const [isPincodeValid, setIsPincodeValid] = useState(false);
+
+  const handleAddToBasket = () => {
+    if (stockDetails === "In-Stock") {
+      router.push({
+        pathname: "/checkout",
+        query: { stockDetails },
+      });
+    }
+  };
   return (
-    
-    
     <section
-        className="your-favorite-food gap"
-        style={{ backgroundImage: "url(assets/img/background-1.png)" }}
-      >
-        <div className="container mt-5">
-          <div className="row align-items-center">
-            <div
-              className="col-lg-5"
-              data-aos="fade-up"
-              data-aos-delay={200}
-              data-aos-duration={300}
-            >
-              <div className="food-photo-section">
-                <img alt="img" src={image}/>
-                {/* <a href="#" className="one">
+      className="your-favorite-food gap"
+      style={{ backgroundImage: "url(assets/img/background-1.png)" }}
+    >
+      <div className="container mt-5">
+        <div className="row align-items-center">
+          <div
+            className="col-lg-5"
+            data-aos="fade-up"
+            data-aos-delay={200}
+            data-aos-duration={300}
+          >
+            <div className="food-photo-section">
+              <img alt="img" src={image} />
+              {/* <a href="#" className="one">
                   <i className="fa-solid fa-burger" />
                   Burgers
                 </a>{" "}
@@ -36,26 +52,22 @@ const DetailsInfo = ({name,price,description,image,quantity,stockDetails}) => {
                   <i className="fa-solid fa-pizza-slice" />
                   Pizza
                 </a> */}
-              </div>
-              
             </div>
-            <div
-              className="col-lg-6 offset-lg-1"
-              data-aos="fade-up"
-              data-aos-delay={300}
-              data-aos-duration={400}
-            >
-              <div className="food-content-section">
-                <h2 > {name} </h2>
+          </div>
+          <div
+            className="col-lg-6 offset-lg-1"
+            data-aos="fade-up"
+            data-aos-delay={300}
+            data-aos-duration={400}
+          >
+            <div className="food-content-section">
+              <h2> {name} </h2>
 
-                
-                <p>{description}
-                    
-                </p>
+              <p>{description}</p>
 
-                <div className="price-detail">
-                    <h2>{price}</h2>
-                    {/* <div className="qty-input">
+              <div className="price-detail">
+                <h2>{price}</h2>
+                {/* <div className="qty-input">
                     <button
                         className="qty-count qty-count--minus"
                         data-action="minus"
@@ -80,42 +92,42 @@ const DetailsInfo = ({name,price,description,image,quantity,stockDetails}) => {
                         +
                     </button>
                     </div> */}
-                </div>
-                <h4>Indigrents Details</h4>
-                <ul className="menu-dish">
-                    <li>Nulla porttitor massa id;</li>
-                    <li>Aliquam vestibulum morbi;</li>
-                    <li>Blandit donec adipiscing;</li>
-                </ul>
+              </div>
+              <h4>Indigrents Details</h4>
+              <ul className="menu-dish">
+                <li>Nulla porttitor massa id;</li>
+                <li>Aliquam vestibulum morbi;</li>
+                <li>Blandit donec adipiscing;</li>
+              </ul>
 
-
-                <>
+              <>
                 <Pincode onPincodeValid={setIsPincodeValid} />
                 {stockDetails === "In-Stock" ? (
                   <div>
-                {isPincodeValid && <button className="button-price mt-5">
-                    Add to Basket
-                    <i className="fa-solid fa-bag-shopping" />
-                </button>}
-                </div>
-            ) : (
-                <h5 className="my-3 text-danger">Out of Stock</h5>
-            )}
-                </>      
-                
+                    {isPincodeValid && (
+                      <button
+                        className="button-price mt-5"
+                        onClick={handleAddToBasket}
+                      >
+                        Add to Basket
+                        <i className="fa-solid fa-bag-shopping" />
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <h5 className="my-3 text-danger">Out of Stock</h5>
+                )}
+              </>
 
-                {/* <Link href="checkout" className="button button-2">
+              {/* <Link href="checkout" className="button button-2">
                   Order Now
                 </Link> */}
-              </div>
             </div>
           </div>
         </div>
+      </div>
     </section>
-    
-  )
+  );
+};
 
-
-}
-
-export default DetailsInfo
+export default DetailsInfo;

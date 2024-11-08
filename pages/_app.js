@@ -11,6 +11,7 @@ import "../src/components/Pincode/Pincode.css";
 import { CartProvider } from "@/src/store/cartContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CheckoutProvider } from "@/src/context/checkoutContext";
 
 export default function App({ Component, pageProps }) {
   const [preLoader, setPreLoader] = useState(true);
@@ -22,24 +23,26 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <CartProvider>
-      <Fragment>
-        <Head>
-          {/* SEO */}
-          <title>DilSekhana</title>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          />
-        </Head>
+    <CheckoutProvider>
+      <CartProvider>
+        <Fragment>
+          <Head>
+            {/* SEO */}
+            <title>DilSekhana</title>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+          </Head>
 
-        {/* Preloader */}
-        {preLoader && <PreLoader />}
+          {/* Preloader */}
+          {preLoader && <PreLoader />}
 
-        {/* Main Component and ToastContainer */}
-        {!preLoader && <Component {...pageProps} />}
-        <ToastContainer />
-      </Fragment>
-    </CartProvider>
+          {/* Main Component and ToastContainer */}
+          {!preLoader && <Component {...pageProps} />}
+          <ToastContainer />
+        </Fragment>
+      </CartProvider>
+    </CheckoutProvider>
   );
 }

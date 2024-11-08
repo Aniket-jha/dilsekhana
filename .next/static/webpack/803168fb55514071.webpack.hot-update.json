@@ -1,0 +1,1 @@
+{"c":["pages/checkout","webpack"],"r":["pages/detail/[id]"],"m":["./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?absolutePagePath=%2FUsers%2Fvishalsanap%2Fdilsekhana%2Fpages%2Fdetail%2F%5Bid%5D.js&page=%2Fdetail%2F%5Bid%5D!","./pages/detail/[id].js","./src/components/Detail/DetailsInfo.js","./src/components/Pincode/Pincode.js"]}
