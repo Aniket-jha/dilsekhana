@@ -5,8 +5,19 @@ import { sliderProps } from "@/src/sliderProps";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Bestseller from "./bestseller";
+import { auth } from "@/src/firebase.config";
+import { useEffect, useState } from "react";
 
-const Index = () => {
+function Index() {
+  const [userName, setUserName] = useState("");
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (user) {
+      setUserName(user.displayName); // Set the fetched name in state
+    }
+  }, []);
+
   return (
     <Layout>
       <section
@@ -22,7 +33,7 @@ const Index = () => {
               data-aos-duration={300}
             >
               <div className="restaurant">
-                <h1>The Best restaurants in your home</h1>
+                <h1>The Best restaurants in your home, {userName}</h1>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor.
@@ -78,7 +89,6 @@ const Index = () => {
 
       {/* Our Best  Seller */}
       <Bestseller />
-
 
       {/* How it works-section */}
       <section className="works-section gap ">
@@ -154,8 +164,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-
 
       {/* best-restaurants */}
       {/* <section
@@ -290,9 +298,6 @@ const Index = () => {
         </div>
       </section> */}
 
-
-
-
       {/* your-favorite-food */}
       <section
         className="your-favorite-food gap"
@@ -343,9 +348,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-
-
 
       {/* counters-section */}
       <section className="counters-section ">
@@ -428,8 +430,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-
 
       {/* reviews-sections */}
       {/* <section className="reviews-sections gap">
@@ -529,8 +529,6 @@ const Index = () => {
         </div>
       </section> */}
 
-
-
       {/* join-partnership */}
       {/* <section
         className="join-partnership gap"
@@ -574,8 +572,6 @@ const Index = () => {
           </div>
         </div>
       </section> */}
-
-
 
       {/* news-section */}
       {/* <section className="news-section gap">
@@ -750,11 +746,9 @@ const Index = () => {
         </div>
       </section> */}
 
-
-
       {/* subscribe-section */}
       {/* <Subscribe /> */}
     </Layout>
   );
-};
+}
 export default Index;
