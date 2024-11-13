@@ -1,9 +1,5 @@
-import BestSeller from "@/src/components/BestSeller";
-import Subscribe from "@/src/components/Subscribe";
 import Layout from "@/src/layouts/Layout";
-import { sliderProps } from "@/src/sliderProps";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
 import Bestseller from "./bestseller";
 import { auth } from "@/src/firebase.config";
 import { useEffect, useState } from "react";

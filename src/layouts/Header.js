@@ -2,6 +2,9 @@ import Link from "next/link";
 import { useState } from "react";
 import CheckoutFuntion from "../components/Cart/CheckoutFuntion";
 import MobileMenu from "./MobileMenu";
+import { getAuth, signOut } from "firebase/auth";
+import { useRouter } from "next/router";
+
 const Header = ({ extraClass }) => {
   const onClick = (e) => {
     const body = document.querySelector("body");
@@ -10,6 +13,22 @@ const Header = ({ extraClass }) => {
   };
   // mobile menu
   const [mobileToggle, setMobileToggle] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const auth = getAuth();
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User signed out successfully");
+      router.push("/login");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
   return (
     <header className={extraClass}>
       <div className="container">
@@ -45,13 +64,12 @@ const Header = ({ extraClass }) => {
                     <Link href="nonveg">Non Veg Menu</Link>
                     <Link href="deseart">Desearts</Link>
                     <Link href="catering">Catering</Link>
-
                   </div>
                 </li>
                 <li className="navbar-dropdown">
                   <Link href="about">About</Link>
                 </li>
-                
+
                 {/* <li className="navbar-dropdown">
                   <Link href="#">Pages</Link>
                   <div className="dropdown">
@@ -80,9 +98,19 @@ const Header = ({ extraClass }) => {
               >
                 <i className="fa-solid fa-bag-shopping" />
               </a>
-              <Link href="checkout" className="button button-2">
-                Order Now
-              </Link>
+              <div className="dropdown">
+                <button className="menu-btn" onClick={toggleDropdown}>
+                  <i class="fa fa-user" aria-hidden="true" />
+                </button>
+                {isOpen && (
+                  <div className="dropdown-content">
+                    <a href="#">Profile</a>
+                    <a href="#" onClick={handleLogout}>
+                      Logout
+                    </a>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
           <div className="menu-wrap">
@@ -94,7 +122,7 @@ const Header = ({ extraClass }) => {
               <CheckoutFuntion sidebar />
             </div>
           </div>
-          
+
           <div
             className={`mobile-nav hmburger-menu ${mobileToggle ? "open" : ""}`}
             id="mobile-nav"
